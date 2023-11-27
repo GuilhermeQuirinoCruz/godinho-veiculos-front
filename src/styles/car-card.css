@@ -1,0 +1,49 @@
+.car-card {
+    background-color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    height: 320px;
+    width: 431px;
+}
+
+.car-brand {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    background-color: #252525;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.car-brand-logo {
+    max-width: 15px;
+}
+
+.car-img {
+    width: 100%;
+}
+
+.car-details {
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+.car-button,
+.car-info {
+    padding: 8px;
+}
