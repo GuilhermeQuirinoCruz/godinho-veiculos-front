@@ -24,34 +24,11 @@ const Home = () => {
         <div className="hero__form">
           <Container>
             <Row className="form__row">
-              <Col lg="4" md="4">
-                <div className="find__cars-left">
-                  <h2>Find your best car here</h2>
-                </div>
-              </Col>
-
-              <Col lg="8" md="8" sm="12">
-                <FindCarForm />
-              </Col>
             </Row>
           </Container>
         </div>
       </section>
-      {/* =========== about section ================ */}
-      <AboutSection />
-      {/* ========== services section ============ */}
-      <section>
-        <Container>
-          <Row>
-            <Col lg="12" className="mb-5 text-center">
-              <h6 className="section__subtitle">See our</h6>
-              <h2 className="section__title">Popular Services</h2>
-            </Col>
 
-            <ServicesList />
-          </Row>
-        </Container>
-      </section>
       {/* =========== car offer section ============= */}
       <section>
         <Container>
@@ -67,8 +44,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* =========== become a driver section ============ */}
-      <BecomeDriverSection />
+
 
       {/* =========== testimonial section =========== */}
       <section>
@@ -84,19 +60,7 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* =============== blog section =========== */}
-      <section>
-        <Container>
-          <Row>
-            <Col lg="12" className="mb-5 text-center">
-              <h6 className="section__subtitle">Explore our blogs</h6>
-              <h2 className="section__title">Latest Blogs</h2>
-            </Col>
 
-            <BlogList />
-          </Row>
-        </Container>
-      </section>
     </Helmet>
   );
 };
