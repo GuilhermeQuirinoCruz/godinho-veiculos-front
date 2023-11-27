@@ -9,16 +9,17 @@ const navLinks = [
     path: "/home",
     display: "Home",
   },
-
   {
     path: "/cars",
     display: "Cars",
   },
-
-
   {
     path: "/contact",
     display: "Financiamento",
+  },
+  {
+    path: "/cadastro-carro",
+    display: "Cadastrar Carro",
   },
 ];
 
