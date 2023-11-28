@@ -10,18 +10,18 @@ import axios from "axios";
 
 
 const CarListing = () => {
-  const [categorias, setCategorias] = useState([]);
 
 
 
-  useEffect(() => {
-    axios.get('/v1/company/menubook-by-id').then(response => setCategorias(response.data)).catch((error) => {
-      console.log(error);
 
-    });
+  // useEffect(() => {
+  //   axios.get('/v1/company/menubook-by-id').then(response => setCategorias(response.data)).catch((error) => {
+  //     console.log(error);
+
+  //   });
 
 
-  }, []);
+  // }, []);
 
 
 
@@ -35,33 +35,30 @@ const CarListing = () => {
         <Container>
           <Row>
 
+            {carInfo.map((item) => {
+              <CarItem item={item} key={item.id}></CarItem>
+              console.log(item)
+            })
 
+            }
+
+            {/* 
             <div>
               {
-                // categorias.map((item, index) => {
-                //   item.categorys.map((cat, index) => {
-                //     cat.items.map((car, index) => {
-                //       <CarItem item={car} key={car.id}></CarItem>
-                //       console.log(car)
-                //     });
+                categorias.map((item, index) => {
+                  item.categorys.map((cat, index) => {
+                    cat.items.map((car, index) => {
+                      <CarItem item={car} key={car.id}></CarItem>
+                      console.log(car)
+                    });
 
 
-                //   })
-                // })
-                carInfo.map((item) => {
-                  <CarCard item={item}></CarCard>
-                  console.log(item)
+                  })
                 })
+                
               }
 
-            </div>
-
-
-
-
-
-
-
+            </div> */}
 
           </Row>
         </Container>
