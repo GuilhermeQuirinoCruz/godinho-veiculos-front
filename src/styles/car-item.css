@@ -2,7 +2,24 @@
   border: 1px solid #7c8a9736;
   padding: 20px;
   border-radius: 5px;
+  position: relative;
 }
+
+.car-brand {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 16px;
+  color: white;
+  border-radius: 10px;
+  background-color: #252525;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
 
 .car__item-info span i {
   color: #f9a826;

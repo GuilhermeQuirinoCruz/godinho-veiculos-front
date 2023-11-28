@@ -2,7 +2,9 @@ import React, { useRef } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/all-images/godinho.png"
 import "../../styles/header.css";
+
 
 const navLinks = [
   {
@@ -23,6 +25,7 @@ const navLinks = [
   },
 ];
 
+
 const Header = () => {
   const menuRef = useRef(null);
 
@@ -30,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* ============ header top ============ */}
+      {/* ============ header top ============
       <div className="header__top">
         <Container>
           <Row>
@@ -51,7 +54,7 @@ const Header = () => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </div> */}
 
       {/* =============== header middle =========== */}
 
@@ -60,12 +63,21 @@ const Header = () => {
 
       <div className="main__navbar">
         <Container>
+
           <div className="navigation__wrapper d-flex align-items-center justify-content-between">
+            <div className="logo">
+              <img src={logo} className="logo"></img>
+
+
+            </div>
+
+
             <span className="mobile__menu">
               <i className="ri-menu-line" onClick={toggleMenu}></i>
             </span>
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
+
               <div className="menu">
                 {navLinks.map((item, index) => (
                   <NavLink
@@ -80,10 +92,16 @@ const Header = () => {
                 ))}
               </div>
             </div>
+            <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
+              <Link to="/login" className=" d-flex align-items-center gap-1">
+                <i className="ri-login-circle-line txt"></i> Login
+              </Link>
 
-            <div className="nav__right">
 
             </div>
+
+
+
           </div>
         </Container>
       </div>
