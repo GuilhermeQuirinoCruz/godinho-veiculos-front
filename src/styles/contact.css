@@ -21,3 +21,11 @@
     font-size: 0.8rem;
   }
 }
+
+select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #7c8a972a;
+  outline: none;
+  color: #3e4144;
+}
