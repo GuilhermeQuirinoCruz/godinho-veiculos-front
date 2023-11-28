@@ -12,6 +12,17 @@ function CadastroCarro() {
   const [modelos, setModelos] = useState([]);
 
   const marcaRef = useRef('');
+  const modeloRef = useRef('');
+  const descricaoRef = useRef('');
+  const fotosRef = useRef('');
+  const anoRef = useRef('');
+  const exchangeRef = useRef('');
+  const fuelRef = useRef('');
+  const steeringRef = useRef('');
+  const kilometragemRef = useRef('');
+  const portasRef = useRef('');
+  const placaRef = useRef('');
+  const corRef = useRef('');
 
   async function fetchMarcas() {
     axios
@@ -82,7 +93,7 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <select name="sltModelo" id="sltModelo">
+            <select name="sltModelo" id="sltModelo" ref={modeloRef}>
               {modelos.length === 0 ?
                 <option key="carregando" value="0">
                   Nenhuma marca selecionada
@@ -98,19 +109,64 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Your Name" type="text" />
-          </FormGroup>
-
-          <FormGroup className="contact__form">
-            <Input placeholder="Email" type="email" />
+            <textarea
+              rows="2"
+              placeholder="Descrição do carro"
+              className="textarea"
+              ref={descricaoRef}
+            ></textarea>
           </FormGroup>
 
           <FormGroup className="contact__form">
             <textarea
-              rows="5"
-              placeholder="Message"
+              rows="4"
+              placeholder="Fotos, separadas por linha"
               className="textarea"
+              ref={fotosRef}
             ></textarea>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Ano" type="number" ref={anoRef}/>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="exchange" id="exchange" ref={exchangeRef}>
+              <option key="exchange-automatico" value="Automático" />
+              <option key="exchange-manual" value="Manual" />
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="fuel" id="fuel" ref={fuelRef}>
+              <option key="fuel-eletrico" value="Elétrico" />
+              <option key="fuel-gasolina" value="Gasolina" />
+              <option key="fuel-diesel" value="Diesel" />
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="steering" id="steering" ref={steeringRef}>
+              <option key="steering-hidraulica" value="Hidráulica" />
+              <option key="steering-eletrica" value="Elétrica" />
+              <option key="steering-manual" value="Manual" />
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Kilometragem" type="number" ref={kilometragemRef}/>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Portas" type="number" ref={portasRef}/>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Placa" type="text" ref={placaRef}/>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Cor" type="text" ref={corRef}/>
           </FormGroup>
 
           <button className=" contact__btn" type="submit">
