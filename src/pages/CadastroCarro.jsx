@@ -72,7 +72,41 @@ function CadastroCarro() {
   async function cadastrarCarro(event) {
     event.preventDefault();
 
-    console.log(marcaRef.current.value);
+    const fotos = fotosRef.current.value
+      .split("\n")
+      .map((foto) => {
+        return {
+          type: "WEB",
+          url: foto
+        }
+      });
+
+    const car = {
+      item: {
+        category: marcaRef.current.value,
+        description: descricaoRef.current.value,
+        name: modeloRef.current.value,
+        photos: fotos,
+        vehicle: {
+          brand: "brand",
+          model: modeloRef.current.value,
+          year: anoRef.current.value,
+          exchange: exchangeRef.current.value,
+          fuel: fuelRef.current.value,
+          steering: steeringRef.current.value,
+          power: "1.4",
+          type: "Carros, vans e utilitários",
+          mileage: kilometragemRef.current.value,
+          doors: portasRef.current.value,
+          licensePlate: placaRef.current.value,
+          color: corRef.current.value,
+          amount: 1,
+          promotion: null
+        }
+      }
+    };
+
+    
   }
 
   function formCadastro() {
@@ -127,7 +161,7 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Ano" type="number" ref={anoRef}/>
+            <Input placeholder="Ano" type="number" ref={anoRef} />
           </FormGroup>
 
           <FormGroup className="contact__form">
@@ -154,19 +188,19 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Kilometragem" type="number" ref={kilometragemRef}/>
+            <Input placeholder="Kilometragem" type="number" ref={kilometragemRef} />
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Portas" type="number" ref={portasRef}/>
+            <Input placeholder="Portas" type="number" ref={portasRef} />
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Placa" type="text" ref={placaRef}/>
+            <Input placeholder="Placa" type="text" ref={placaRef} />
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Cor" type="text" ref={corRef}/>
+            <Input placeholder="Cor" type="text" ref={corRef} />
           </FormGroup>
 
           <button className=" contact__btn" type="submit">
