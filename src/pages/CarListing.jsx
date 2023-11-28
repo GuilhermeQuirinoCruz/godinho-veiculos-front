@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -12,11 +12,16 @@ import axios from "axios";
 const CarListing = () => {
   const [categorias, setCategorias] = useState([]);
 
-  async function handleCategorias() {
 
 
+  useEffect(() => {
+    axios.get('/v1/company/menubook-by-id').then(response => setCategorias(response.data)).catch((error) => {
+      console.log(error);
 
-  }
+    });
+
+
+  }, []);
 
 
 
@@ -32,19 +37,25 @@ const CarListing = () => {
 
 
             <div>
+              {
+                // categorias.map((item, index) => {
+                //   item.categorys.map((cat, index) => {
+                //     cat.items.map((car, index) => {
+                //       <CarItem item={car} key={car.id}></CarItem>
+                //       console.log(car)
+                //     });
 
 
+                //   })
+                // })
+                carInfo.map((item) => {
+                  <CarCard item={item}></CarCard>
+                  console.log(item)
+                })
+              }
 
             </div>
-            <div>
-              {carInfo.map((item) => {
-                return (
-                  <CarItem item={item} key={item.id} />
 
-                )
-              })}
-
-            </div>
 
 
 
@@ -55,7 +66,7 @@ const CarListing = () => {
           </Row>
         </Container>
       </section>
-    </Helmet>
+    </Helmet >
   );
 };
 

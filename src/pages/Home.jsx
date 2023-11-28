@@ -11,7 +11,7 @@ import carData from "../assets/data/carData";
 import CarItem from "../components/UI/CarItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
-
+import carInfo from "../assets/data/ourCar";
 import BlogList from "../components/UI/BlogList";
 
 const Home = () => {
@@ -38,9 +38,10 @@ const Home = () => {
               <h2 className="section__title">Ofertas Quentes</h2>
             </Col>
 
-            {carData.slice(0, 6).map((item) => (
+            {/* MEXER AQUI!! */}
+            {/* {carInfo.slice(0, 6).map((item) => (
               <CarItem item={item} key={item.id} />
-            ))}
+            ))} */}
           </Row>
         </Container>
       </section>

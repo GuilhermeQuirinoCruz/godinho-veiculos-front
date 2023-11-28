@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import '../../styles/car-card.css'
 
 const CarCard = (props) => {
-  const { vehicle, photos } = props.item;
+  const { description, name, id, photos, vehicle, } = props.item;
 
   return (
     <div className='car-card'>
-      <img src={photos[0].url} className='car-img' />
+      <img src={photos} className='car-img' />
       <div className="car-brand">
-        <img src={photos[1].url} className='car-brand-logo' />
+        <img src={photos} className='car-brand-logo' />
         {vehicle.brand}
       </div>
       <div className="car-details">
