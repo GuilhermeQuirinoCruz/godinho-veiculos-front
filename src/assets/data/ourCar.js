@@ -39,7 +39,8 @@ const carInfo = [
             }
         },
 
-    }
+    },
+
 
 
 
@@ -47,3 +48,4 @@ const carInfo = [
 ];
 
 export default carInfo;
+

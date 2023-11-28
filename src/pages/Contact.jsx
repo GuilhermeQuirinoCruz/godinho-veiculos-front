@@ -54,7 +54,7 @@ const Contact = () => {
 
   return (
     <Helmet title="Contact">
-      <CommonSection title="Contact" />
+      <CommonSection title="Financiamento" />
       <section>
         <Container>
           <Row>
