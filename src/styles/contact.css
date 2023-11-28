@@ -29,3 +29,7 @@ select {
   outline: none;
   color: #3e4144;
 }
+
+textarea {
+  width: 100%;
+}
