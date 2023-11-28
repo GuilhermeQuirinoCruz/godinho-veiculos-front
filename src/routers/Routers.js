@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import CadastroCarro from "../pages/CadastroCarro";
+import CarItem from "../components/UI/CarItem";
 
 const Routers = () => {
   return (
@@ -20,10 +21,11 @@ const Routers = () => {
       <Route path="/cadastro-carro" element={<CadastroCarro />} />
       <Route path="/about" element={<About />} />
       <Route path="/cars" element={<CarListing />} />
+      <Route path="/carItem" exact element={<CarItem />} />
       <Route path="/cars/:slug" element={<CarDetails />} />
       <Route path="/blogs" element={<Blog />} />
       <Route path="/blogs/:slug" element={<BlogDetails />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/financiamento" element={<Contact />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

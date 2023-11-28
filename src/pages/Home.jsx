@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import HeroSlider from "../components/UI/HeroSlider";
 import Helmet from "../components/Helmet/Helmet";
 
 import { Container, Row, Col } from "reactstrap";
-import FindCarForm from "../components/UI/FindCarForm";
-import AboutSection from "../components/UI/AboutSection";
-import ServicesList from "../components/UI/ServicesList";
-import carData from "../assets/data/carData";
 import CarItem from "../components/UI/CarItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
+import axios from "axios";
 
-import BlogList from "../components/UI/BlogList";
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+
+    axios.get('/v1/company/menubook-by-id')
+      .then(response => {
+        setData(response.data);
+
+
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
   return (
     <Helmet title="Home">
       {/* ============= hero section =========== */}
@@ -23,11 +30,11 @@ const Home = () => {
 
         <div className="hero__form">
           <Container>
-            <Row className="form__row">
-            </Row>
+
           </Container>
         </div>
       </section>
+
 
       {/* =========== car offer section ============= */}
       <section>
@@ -38,9 +45,21 @@ const Home = () => {
               <h2 className="section__title">Hot Offers</h2>
             </Col>
 
-            {carData.slice(0, 6).map((item) => (
-              <CarItem item={item} key={item.id} />
-            ))}
+            {
+
+              data.map((data, brandIndex) => (
+                // Loop through cars within each brand
+                data.categorys.map((brands, brandsIndex) => (
+                  brands.items.map((cars, brandsIndex) => (
+                    <CarItem item={cars} key={cars.id}></CarItem>
+
+                  ))
+
+
+                ))
+
+              ))
+            }
           </Row>
         </Container>
       </section>
