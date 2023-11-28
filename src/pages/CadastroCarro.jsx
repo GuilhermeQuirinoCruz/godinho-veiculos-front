@@ -12,6 +12,17 @@ function CadastroCarro() {
   const [modelos, setModelos] = useState([]);
 
   const marcaRef = useRef('');
+  const modeloRef = useRef('');
+  const descricaoRef = useRef('');
+  const fotosRef = useRef('');
+  const anoRef = useRef('');
+  const exchangeRef = useRef('');
+  const fuelRef = useRef('');
+  const steeringRef = useRef('');
+  const kilometragemRef = useRef(0);
+  const portasRef = useRef(0);
+  const placaRef = useRef('');
+  const corRef = useRef('');
 
   async function fetchMarcas() {
     axios
@@ -61,7 +72,41 @@ function CadastroCarro() {
   async function cadastrarCarro(event) {
     event.preventDefault();
 
-    console.log(marcaRef.current.value);
+    const fotos = fotosRef.current.value
+      .split("\n")
+      .map((foto) => {
+        return {
+          type: "WEB",
+          url: foto
+        }
+      });
+
+    const car = {
+      item: {
+        category: marcaRef.current.value,
+        description: descricaoRef.current.value,
+        name: modeloRef.current.value,
+        photos: fotos,
+        vehicle: {
+          brand: "brand",
+          model: modeloRef.current.value,
+          year: anoRef.current.value,
+          exchange: exchangeRef.current.value,
+          fuel: fuelRef.current.value,
+          steering: steeringRef.current.value,
+          power: "1.4",
+          type: "Carros, vans e utilitários",
+          mileage: kilometragemRef.current.value,
+          doors: portasRef.current.value,
+          licensePlate: placaRef.current.value,
+          color: corRef.current.value,
+          amount: 1,
+          promotion: null
+        }
+      }
+    };
+
+    console.log(car);
   }
 
   function formCadastro() {
@@ -82,7 +127,7 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <select name="sltModelo" id="sltModelo">
+            <select name="sltModelo" id="sltModelo" ref={modeloRef}>
               {modelos.length === 0 ?
                 <option key="carregando" value="0">
                   Nenhuma marca selecionada
@@ -98,19 +143,64 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-            <Input placeholder="Your Name" type="text" />
-          </FormGroup>
-
-          <FormGroup className="contact__form">
-            <Input placeholder="Email" type="email" />
+            <textarea
+              rows="2"
+              placeholder="Descrição do carro"
+              className="textarea"
+              ref={descricaoRef}
+            ></textarea>
           </FormGroup>
 
           <FormGroup className="contact__form">
             <textarea
-              rows="5"
-              placeholder="Message"
+              rows="4"
+              placeholder="Fotos, separadas por linha"
               className="textarea"
+              ref={fotosRef}
             ></textarea>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Ano" type="number" innerRef={anoRef} />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="exchange" id="exchange" ref={exchangeRef}>
+              <option key="exchange-automatico" value="Automático">Automático</option>
+              <option key="exchange-manual" value="Manual">Manual</option>
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="fuel" id="fuel" ref={fuelRef}>
+              <option key="fuel-gasolina" value="Gasolina">Gasolina</option>
+              <option key="fuel-diesel" value="Diesel">Diesel</option>
+              <option key="fuel-eletrico" value="Elétrico">Elétrico</option>
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <select name="steering" id="steering" ref={steeringRef}>
+              <option key="steering-hidraulica" value="Hidráulica">Hidráulica</option>
+              <option key="steering-eletrica" value="Elétrica">Elétrica</option>
+              <option key="steering-manual" value="Manual">Manual</option>
+            </select>
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Kilometragem" type="number" innerRef={kilometragemRef} />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Portas" type="number" innerRef={portasRef} />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Placa" type="text" innerRef={placaRef} />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <Input placeholder="Cor" type="text" innerRef={corRef} />
           </FormGroup>
 
           <button className=" contact__btn" type="submit">
