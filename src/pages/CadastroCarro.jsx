@@ -24,10 +24,16 @@ function CadastroCarro() {
   const portasRef = useRef(0);
   const placaRef = useRef('');
   const corRef = useRef('');
+  const precoRef = useRef(0);
 
   async function fetchMarcas() {
-    axios
-      .get("https://parallelum.com.br/fipe/api/v2/cars/brands")
+    const instance = axios.create({
+      baseURL: 'https://parallelum.com.br/fipe/api/v2/cars',
+      withCredentials: false,
+    });
+    
+    instance
+      .get("/brands")
       .then((response) => {
         console.log(response);
 
@@ -52,8 +58,13 @@ function CadastroCarro() {
     if (marcaSelecionada === "0" || marcaSelecionada === 0) {
       setModelos([]);
     } else {
-      axios
-        .get(`https://parallelum.com.br/fipe/api/v2/cars/brands/${marcaSelecionada}/models`)
+      const instance = axios.create({
+        baseURL: 'https://parallelum.com.br/fipe/api/v2/cars',
+        withCredentials: false,
+      });
+
+      instance
+        .get(`/brands/${marcaSelecionada}/models`)
         .then((response) => {
           console.log(response);
           setModelos(response.data);
@@ -101,13 +112,40 @@ function CadastroCarro() {
           doors: portasRef.current.value,
           licensePlate: placaRef.current.value,
           color: corRef.current.value,
-          amount: 1,
+          additionals: {
+            airBag: false,
+            alarm: false,
+            airConditioning: false,
+            eletricLock: false,
+            eletricGlass: false,
+            sound: false,
+            reverseSensor: false,
+            reverseCamera: false,
+            armored: false
+          },
+          amount: precoRef.current.value,
           promotion: null
         }
       }
     };
 
     console.log(car);
+
+    const instance = axios.create({
+      headers: {
+        token: localStorage.getItem("token"),
+        "company-token": localStorage.getItem("company-token"),
+      }
+    });
+
+    instance
+      .post("/v1/company/menubook/item", car)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function formCadastro() {
@@ -175,7 +213,7 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-          <label htmlFor="sltExchange">Câmbio *</label>
+            <label htmlFor="sltExchange">Câmbio *</label>
             <select name="sltExchange" id="sltExchange" ref={exchangeRef}>
               <option key="exchange-automatico" value="Automático">Automático</option>
               <option key="exchange-manual" value="Manual">Manual</option>
@@ -183,7 +221,7 @@ function CadastroCarro() {
           </FormGroup>
 
           <FormGroup className="contact__form">
-          <label htmlFor="sltFuel">Tipo de Combustível *</label>
+            <label htmlFor="sltFuel">Tipo de Combustível *</label>
             <select name="sltFuel" id="sltFuel" ref={fuelRef}>
               <option key="fuel-gasolina" value="Gasolina">Gasolina</option>
               <option key="fuel-diesel" value="Diesel">Diesel</option>
@@ -223,6 +261,11 @@ function CadastroCarro() {
           <FormGroup className="contact__form">
             <label htmlFor="txtCor">Cor *</label>
             <Input name="txtCor" id="txtCor" placeholder="Cor" type="text" innerRef={corRef} />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <label htmlFor="nmbPreco">Preço *</label>
+            <Input name="nmbPreco" id="nmbPreco" placeholder="Portas" type="number" innerRef={precoRef} />
           </FormGroup>
 
           <button className=" contact__btn" type="submit">

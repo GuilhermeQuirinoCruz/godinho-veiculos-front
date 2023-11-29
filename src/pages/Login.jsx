@@ -19,10 +19,28 @@ const Login = () => {
         axios
             .post('/v1/user/login', data)
             .then((response) => {
-                alert("LOGIN SUCCESS");
-
                 console.log(response);
-                axios.defaults.headers.post['Authorization'] = response.data.token;
+                // axios.defaults.headers.post['token'] = response.data.token;
+                // axios.defaults.headers.get['token'] = response.data.token;
+
+                localStorage.setItem('token', response.data.token);
+
+                axios
+                    .get("/v1/user/corporations", {
+                        headers: {
+                            token: localStorage.getItem("token"),
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response);
+
+                        localStorage.setItem('company-token', response.data[0].user.token);
+                        // axios.defaults.headers.get['token'] = response.data.token;
+                    })
+                    .catch((error) => {
+                        alert("LOGIN failed");
+                        console.log(error);
+                    });
             })
             .catch((error) => {
                 alert("LOGIN failed");
