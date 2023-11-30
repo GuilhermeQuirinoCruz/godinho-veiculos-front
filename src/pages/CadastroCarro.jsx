@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Input, Label } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 
@@ -25,13 +25,22 @@ function CadastroCarro() {
   const placaRef = useRef('');
   const corRef = useRef('');
   const precoRef = useRef(0);
+  const airbagRef = useRef(false);
+  const alarmeRef = useRef(false);
+  const arRef = useRef(false);
+  const travaRef = useRef(false);
+  const vidroRef = useRef(false);
+  const somRef = useRef(false);
+  const sensorRef = useRef(false);
+  const cameraRef = useRef(false);
+  const blindadoRef = useRef(false);
 
   async function fetchMarcas() {
     const instance = axios.create({
       baseURL: 'https://parallelum.com.br/fipe/api/v2/cars',
       withCredentials: false,
     });
-    
+
     instance
       .get("/brands")
       .then((response) => {
@@ -113,15 +122,15 @@ function CadastroCarro() {
           licensePlate: placaRef.current.value,
           color: corRef.current.value,
           additionals: {
-            airBag: false,
-            alarm: false,
-            airConditioning: false,
-            eletricLock: false,
-            eletricGlass: false,
-            sound: false,
-            reverseSensor: false,
-            reverseCamera: false,
-            armored: false
+            airBag: airbagRef.current.checked,
+            alarm: alarmeRef.current.checked,
+            airConditioning: arRef.current.checked,
+            eletricLock: travaRef.current.checked,
+            eletricGlass: vidroRef.current.checked,
+            sound: somRef.current.checked,
+            reverseSensor: sensorRef.current.checked,
+            reverseCamera: cameraRef.current.checked,
+            armored: blindadoRef.current.checked
           },
           amount: precoRef.current.value,
           promotion: null
@@ -138,14 +147,14 @@ function CadastroCarro() {
       }
     });
 
-    instance
-      .post("/v1/company/menubook/item", car)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // instance
+    //   .post("/v1/company/menubook/item", car)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   function formCadastro() {
@@ -192,7 +201,8 @@ function CadastroCarro() {
               id="txtDescricao"
               name="txtDescricao"
               ref={descricaoRef}
-            ></textarea>
+              required>
+            </textarea>
           </FormGroup>
 
           <FormGroup className="contact__form">
@@ -204,12 +214,13 @@ function CadastroCarro() {
               id="txtFotos"
               name="txtFotos"
               ref={fotosRef}
-            ></textarea>
+              required>
+            </textarea>
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="nmbAno">Ano *</label>
-            <Input name="nmbAno" id="nmbAno" placeholder="Ano" type="number" innerRef={anoRef} />
+            <Input name="nmbAno" id="nmbAno" placeholder="Ano" type="number" innerRef={anoRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
@@ -240,32 +251,72 @@ function CadastroCarro() {
 
           <FormGroup className="contact__form">
             <label htmlFor="nbmPower">Cilindradas *</label>
-            <Input name="nbmPower" id="nbmPower" placeholder="1.0, 1,4, 1.6, ..." type="number" step="0.1" innerRef={powerRef} />
+            <Input name="nbmPower" id="nbmPower" placeholder="1.0, 1,4, 1.6, ..." type="number" step="0.1" innerRef={powerRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="nmbKm">Kilometragem *</label>
-            <Input name="nmbKm" id="nmbKm" placeholder="Kilometragem" type="number" innerRef={kilometragemRef} />
+            <Input name="nmbKm" id="nmbKm" placeholder="Kilometragem" type="number" innerRef={kilometragemRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="nbmPortas">Portas *</label>
-            <Input name="nbmPortas" id="nbmPortas" placeholder="Portas" type="number" innerRef={portasRef} />
+            <Input name="nbmPortas" id="nbmPortas" placeholder="Portas" type="number" innerRef={portasRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="txtPlaca">Placa *</label>
-            <Input name="txtPlaca" id="txtPlaca" placeholder="Placa" type="text" innerRef={placaRef} />
+            <Input name="txtPlaca" id="txtPlaca" placeholder="Placa" type="text" innerRef={placaRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="txtCor">Cor *</label>
-            <Input name="txtCor" id="txtCor" placeholder="Cor" type="text" innerRef={corRef} />
+            <Input name="txtCor" id="txtCor" placeholder="Cor" type="text" innerRef={corRef} required />
           </FormGroup>
 
           <FormGroup className="contact__form">
             <label htmlFor="nmbPreco">Preço *</label>
-            <Input name="nmbPreco" id="nmbPreco" placeholder="Portas" type="number" innerRef={precoRef} />
+            <Input name="nmbPreco" id="nmbPreco" placeholder="Preço" type="number" innerRef={precoRef} required />
+          </FormGroup>
+
+          <FormGroup className="contact__form">
+            <label>Adicionais</label> <br />
+
+            <Label check>
+              <Input name="chkAirbag" id="chkAirbag" type="checkbox" innerRef={airbagRef} /> Airbag
+            </Label>
+
+            <Label check>
+              <Input name="chkAlarme" id="chkAlarme" type="checkbox" innerRef={alarmeRef} /> Alarme
+            </Label>
+
+            <Label check>
+              <Input name="chkAlarme" id="chkAlarme" type="checkbox" innerRef={arRef} /> Ar-condicionado
+            </Label>
+
+            <Label check>
+              <Input name="chkTrava" id="chkTrava" type="checkbox" innerRef={travaRef} /> Trava elétrica
+            </Label>
+
+            <Label check>
+              <Input name="chkVidro" id="chkVidro" type="checkbox" innerRef={vidroRef} /> Vidro elétrico
+            </Label>
+
+            <Label check>
+              <Input name="chkSom" id="chkSom" type="checkbox" innerRef={somRef} /> Som
+            </Label>
+
+            <Label check>
+              <Input name="chkSensor" id="chkSensor" type="checkbox" innerRef={sensorRef} /> Sensor de ré
+            </Label>
+
+            <Label check>
+              <Input name="chkCamera" id="chkCamera" type="checkbox" innerRef={cameraRef}/> Câmera de ré
+            </Label>
+
+            <Label check>
+              <Input name="chkBlindado" id="chkBlindado" type="checkbox" innerRef={blindadoRef} /> Blindado
+            </Label>
           </FormGroup>
 
           <button className=" contact__btn" type="submit">
