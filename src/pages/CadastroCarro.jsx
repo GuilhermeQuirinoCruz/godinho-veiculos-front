@@ -147,14 +147,14 @@ function CadastroCarro() {
       }
     });
 
-    // instance
-    //   .post("/v1/company/menubook/item", car)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    instance
+      .post("/v1/company/menubook/item", car)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function formCadastro() {
