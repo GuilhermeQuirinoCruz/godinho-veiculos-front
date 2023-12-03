@@ -15,10 +15,7 @@ const CarDetails = (props) => {
     console.log(from);
   }
 
-
   //const singleCarItem = carData.find((item) => item.carName === slug);
-
-
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);
@@ -26,7 +23,6 @@ const CarDetails = (props) => {
 
   return (
     <Helmet title={"nada"}>
-
       <section>
         <Container>
           {/* <button onClick={showCar}>Click</button> */}
@@ -116,10 +112,6 @@ const CarDetails = (props) => {
                 </div>
               </div>
             </Col>
-
-
-
-
           </Row>
         </Container>
       </section>
@@ -128,4 +120,3 @@ const CarDetails = (props) => {
 };
 
 export default CarDetails;
-

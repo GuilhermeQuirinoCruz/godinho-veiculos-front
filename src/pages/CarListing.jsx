@@ -3,48 +3,36 @@ import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
-import carData from "../assets/data/carData";
-import carInfo from "../assets/data/ourCar";
 import axios from "axios";
 
 const CarListing = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API endpoint using Axios
     axios.get('/v1/company/menubook-by-id')
       .then(response => {
         setData(response.data);
-
-
       })
       .catch(error => console.error('Error fetching data:', error));
-  }, []); // The empty dependency array ensures the effect runs only once
+  }, []);
 
   return (
-    <Helmet title="Cars">
-      <CommonSection title="Car Listing" />
+    <Helmet title="Carros">
+      <CommonSection title="Lista de Carros" />
 
       <section>
         <Container>
           <Row>
-            {/* {
-              carInfo.map((item) => (
-                <CarItem item={item} key={item.id} />
-              ))
-            } */}
-            {
-              data.map((data, brandIndex) => (
-                // Loop through cars within each brand
+            {data.length === 0 ?
+              <Col lg="12" className="text-center mb-5">
+                <h2 className="section__title">Carregando ofertas...</h2>
+              </Col>
+              : data.map((data, brandIndex) => (
                 data.categorys.map((brands, brandsIndex) => (
                   brands.items.map((cars, brandsIndex) => (
                     <CarItem item={cars} key={cars.id}></CarItem>
-
                   ))
-
-
                 ))
-
               ))
             }
           </Row>

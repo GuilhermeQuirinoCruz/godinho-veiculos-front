@@ -5,13 +5,6 @@ import "../../styles/car-item.css";
 
 const CarItem = (props) => {
   //const { imgUrl, model, carName, automatic, speed, price } = props.item;
-
-
-
-
-
-
-
   return (
     <Col lg="4" md="4" sm="6" className="mb-5">
       <div className="car__item">
@@ -37,13 +30,10 @@ const CarItem = (props) => {
             </span>
           </div>
 
-
           <div className="">
             <button className=" w-50 car__item-btn car__btn-details" >
-
               <Link to={`/cars/${props.item.vehicle.model}`} state={{ from: props.item }}>Details</Link>
             </button>
-
           </div>
         </div>
       </div>

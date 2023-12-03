@@ -5,15 +5,16 @@ import Helmet from "../components/Helmet/Helmet";
 
 import { Container, Row, Col } from "reactstrap";
 import CarItem from "../components/UI/CarItem";
-import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
 import axios from "axios";
 
 const Home = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     axios.get('/v1/company/menubook-by-id')
       .then(response => {
+        console.log(response);
         setData(response.data);
       })
       .catch(error => console.error('Error fetching data:', error));
@@ -31,23 +32,32 @@ const Home = () => {
       </section>
 
       {/* =========== car offer section ============= */}
+
       <section>
         <Container>
-          <Row>
-            <Col lg="12" className="text-center mb-5">
-              <h6 className="section__subtitle">Confira as</h6>
-              <h2 className="section__title">Melhores Ofertas</h2>
-            </Col>
-            {
-              data.map((data, brandIndex) => (
-                data.categorys.map((brands, brandsIndex) => (
-                  brands.items.map((cars, brandsIndex) => (
-                    <CarItem item={cars} key={cars.id}></CarItem>
+          {data.length === 0 ?
+            <Row>
+              <Col lg="12" className="text-center mb-5">
+                <h2 className="section__title">Carregando ofertas...</h2>
+              </Col>
+            </Row>
+            :
+            <Row>
+              <Col lg="12" className="text-center mb-5">
+                <h6 className="section__subtitle">Confira as</h6>
+                <h2 className="section__title">Melhores Ofertas</h2>
+              </Col>
+              {
+                data.map((data, brandIndex) => (
+                  data.categorys.slice(0, 3).map((brands, brandsIndex) => (
+                    brands.items.map((cars, brandsIndex) => (
+                      <CarItem item={cars} key={cars.id}></CarItem>
+                    ))
                   ))
                 ))
-              ))
-            }
-          </Row>
+              }
+            </Row>
+          }
         </Container>
       </section>
 
@@ -59,7 +69,7 @@ const Home = () => {
               <h6 className="section__subtitle">O que os clientes dizem</h6>
               <h2 className="section__title">Avaliações</h2>
             </Col>
-            
+
             <Testimonial />
           </Row>
         </Container>
