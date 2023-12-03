@@ -7,6 +7,10 @@ import "../styles/contact.css";
 import axios from "axios";
 
 function CadastroCarro() {
+  if (!localStorage.getItem("token")) {
+    window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
+  }
+
   const [marcas, setMarcas] = useState([]);
   const [marcaSelecionada, setMarcaSelecionada] = useState("0");
   const [modelos, setModelos] = useState([]);
@@ -311,7 +315,7 @@ function CadastroCarro() {
             </Label>
 
             <Label check>
-              <Input name="chkCamera" id="chkCamera" type="checkbox" innerRef={cameraRef}/> Câmera de ré
+              <Input name="chkCamera" id="chkCamera" type="checkbox" innerRef={cameraRef} /> Câmera de ré
             </Label>
 
             <Label check>

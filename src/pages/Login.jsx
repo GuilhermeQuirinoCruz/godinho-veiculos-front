@@ -3,6 +3,10 @@ import { Form } from "reactstrap";
 import axios from "axios";
 
 const Login = () => {
+    if (localStorage.getItem("token")) {
+        window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
+    }
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -23,29 +27,36 @@ const Login = () => {
             .post('/v1/user/login', data)
             .then((response) => {
                 console.log(response);
+                if(response.status !== 200) {
+                    throw new Error("Erro no login");
+                }
 
-                localStorage.setItem('token', response.data.token);
-
+                const token = response.data.token;
                 axios
                     .get("/v1/user/corporations", {
                         headers: {
-                            token: localStorage.getItem("token"),
+                            token: token,
                         }
                     })
                     .then((response) => {
                         console.log(response);
 
+                        if(response.status !== 200) {
+                            throw new Error("Erro no login");
+                        }
+
+                        localStorage.setItem('token', response.data.token);
                         localStorage.setItem('company-token', response.data[0].user.token);
 
-                        window.location.replace("http://localhost:3000/home");
+                        window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
                     })
                     .catch((error) => {
-                        alert("LOGIN failed");
+                        alert("Erro no login\nConfira os dados inseridos e tente novamente");
                         console.log(error);
                     });
             })
             .catch((error) => {
-                alert("LOGIN failed");
+                alert("Erro no login\nConfira os dados inseridos e tente novamente");
                 console.log(error);
             });
     };

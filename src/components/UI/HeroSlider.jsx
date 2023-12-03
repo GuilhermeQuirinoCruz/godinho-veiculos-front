@@ -17,15 +17,14 @@ const HeroSlider = () => {
     slidesToScroll: 1,
     pauseOnHover: false,
   };
+
   return (
     <Slider {...settings} className="hero__slider">
       <div className="slider__item slider__item-01 mt0">
         <Container>
           <div className="slider__content ">
-            <h4 className="text-light mb-3">Seu próximo Carro está aqui</h4>
-            <h1 className="text-light mb-4">Confira agora nosso estoque</h1>
-
-
+            <h4 className="text-light mb-3">Seu próximo carro está aqui</h4>
+            <h1 className="text-light mb-4">Confira agora nosso estoque!</h1>
           </div>
         </Container>
       </div>
@@ -35,8 +34,6 @@ const HeroSlider = () => {
           <div className="slider__content ">
             <h4 className="text-light mb-3">Seu próximo Carro está aqui</h4>
             <h1 className="text-light mb-4">Confira agora nosso estoque</h1>
-
-
           </div>
         </Container>
       </div>
@@ -46,8 +43,6 @@ const HeroSlider = () => {
           <div className="slider__content ">
             <h4 className="text-light mb-3">Seu próximo Carro está aqui</h4>
             <h1 className="text-light mb-4">Confira agora nosso estoque</h1>
-
-
           </div>
         </Container>
       </div>

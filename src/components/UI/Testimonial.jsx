@@ -38,79 +38,48 @@ const Testimonial = () => {
     ],
   };
 
+  const avaliacoes = [
+    {
+      nome: "Rodrigo S.",
+      mensagem: "Encontrei meu carro perfeito na Godinho Veículos. A equipe foi extremamente prestativa, tornando todo o processo fácil e eficiente. Recomendo a todos os que buscam qualidade.",
+      img: ava01,
+    },
+    {
+      nome: "Carla M.",
+      mensagem: "Minha experiência na Godinho Veículos foi incrível! Encontrei o carro dos meus sonhos com facilidade, e a equipe foi extremamente atenciosa. Recomendo a todos!",
+      img: ava02,
+    },
+    {
+      nome: "Marcelo G.",
+      mensagem: "Adquiri meu veículo na Godinho e estou muito satisfeito. Processo transparente, carros de qualidade e um excelente atendimento. Recomendo a todos os compradores",
+      img: ava03,
+    },
+    {
+      nome: "Amanda R.",
+      mensagem: "Godinho Veículos superou minhas expectativas. Encontrei um carro perfeito, e a equipe fez todo o processo ser fácil e rápido. Estou muito feliz com minha compra!",
+      img: ava04,
+    },
+  ];
+
   return (
     <Slider {...settings}>
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
+      {avaliacoes.map((avaliacao, index) => (
+        <div className="testimonial py-4 px-3" key={index}>
+          <p className="section__description">
+            {avaliacao.mensagem}
+          </p>
 
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava01} alt="" className="w-25 h-25 rounded-2" />
+          <div className="mt-3 d-flex align-items-center gap-4">
+            <img src={avaliacao.img} alt="" className="w-25 h-25 rounded-2" />
 
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
+            <div>
+              <h6 className="mb-0 mt-3">{avaliacao.nome}</h6>
+              <p className="section__description">Cliente</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava02} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava03} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="testimonial py-4 px-3">
-        <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
-        </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava04} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
-      </div>
+      ))
+      }
     </Slider>
   );
 };

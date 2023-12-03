@@ -5,7 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/all-images/godinho.png"
 import "../../styles/header.css";
 
-
 const navLinks = [
   {
     path: "/home",
@@ -29,7 +28,6 @@ const navLinks = [
   },
 ];
 
-
 const Header = () => {
   const menuRef = useRef(null);
 
@@ -39,7 +37,7 @@ const Header = () => {
     localStorage.setItem("token", "");
     localStorage.setItem("company-token", "");
 
-    window.location.replace("http://localhost:3000/home");
+    window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
   }
 
   return (
@@ -69,7 +67,6 @@ const Header = () => {
 
       <div className="main__navbar">
         <Container>
-
           <div className="navigation__wrapper d-flex align-items-center justify-content-between">
             <div className="logo">
               <img src={logo} className="logo"></img>
