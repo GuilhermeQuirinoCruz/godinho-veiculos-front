@@ -31,9 +31,11 @@ const CarItem = (props) => {
           </div>
 
           <div className="">
-            <button className=" w-50 car__item-btn car__btn-details" >
-              <Link to={`/cars/${props.item.vehicle.model}`} state={{ from: props.item }}>Details</Link>
-            </button>
+            <Link to={`/cars/${props.item.id}`} state={{ from: props.item }}>
+              <button className=" w-50 car__item-btn car__btn-details" >
+                Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>

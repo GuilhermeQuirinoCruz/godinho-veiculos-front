@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
 import CarListing from "../pages/CarListing";
 import CarDetails from "../pages/CarDetails";
 import NotFound from "../pages/NotFound";
@@ -17,7 +16,6 @@ const Routers = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro-carro" element={<CadastroCarro />} />
-      <Route path="/about" element={<About />} />
       <Route path="/cars" element={<CarListing />} />
       <Route path="/carItem" exact element={<CarItem />} />
       <Route path="/cars/:slug" element={<CarDetails />} />

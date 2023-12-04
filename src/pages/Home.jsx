@@ -49,9 +49,9 @@ const Home = () => {
               </Col>
               {
                 data.map((data, brandIndex) => (
-                  data.categorys.slice(0, 3).map((brands, brandsIndex) => (
+                  data.categorys.map((brands, brandsIndex) => (
                     brands.items.map((cars, brandsIndex) => (
-                      <CarItem item={cars} key={cars.id}></CarItem>
+                      <CarItem item={cars} key={cars.id} />
                     ))
                   ))
                 ))

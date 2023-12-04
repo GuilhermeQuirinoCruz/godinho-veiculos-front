@@ -114,7 +114,7 @@ function CadastroCarro() {
         photos: fotos,
         vehicle: {
           brand: marcas.find(marca => marca.code === marcaRef.current.value).name,
-          model: modeloRef.current.value,
+          model: (modeloRef.current.value.replace("/", "-")),
           year: anoRef.current.value,
           exchange: exchangeRef.current.value,
           fuel: fuelRef.current.value,

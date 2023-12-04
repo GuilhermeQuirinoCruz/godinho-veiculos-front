@@ -1,0 +1,10 @@
+.img-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.img {
+    min-width: 10vw;
+    max-width: 15vw;
+}

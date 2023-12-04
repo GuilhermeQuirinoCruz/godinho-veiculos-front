@@ -1,34 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
-import { useParams, useLocation } from "react-router-dom";
-import axios from "axios";
+import { useLocation } from "react-router-dom";
+
+import "../styles/car-details.css";
 
 const CarDetails = (props) => {
-  const { slug } = useParams();
   const location = useLocation();
+  if (!location.state) {
+    window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
+  }
   const { from } = location.state
 
-  //const receivedData = props.item.location.state ? props.item.location.state.data : null;
+  const nomeAdicionais = {
+    airBag: "Airbag",
+    airConditioning: "Ar-condicionado",
+    alarm: "Alarme",
+    armored: "Blindado",
+    eletricGlass: "Vidro elétrico",
+    eletricLock: "Trava elétrica",
+    reverseCamera: "Câmera de ré",
+    reverseSensor: "Sensor de ré",
+    sound: "Som",
+  };
 
-  const showCar = () => {
-    console.log(from);
-  }
-
-  //const singleCarItem = carData.find((item) => item.carName === slug);
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [props]);
+  const [fotoAtual, setFotoAtual] = useState(0);
 
   return (
-    <Helmet title={"nada"}>
+    <Helmet title={from.vehicle.model}>
       <section>
         <Container>
-          {/* <button onClick={showCar}>Click</button> */}
           <Row>
             <Col lg="6">
-              <img src={from.photos[0].url} alt="" className="w-100" />
+              <img src={from.photos[fotoAtual].url} alt="" className="w-100" />
             </Col>
 
             <Col lg="6">
@@ -62,7 +66,7 @@ const CarDetails = (props) => {
                 >
                   <span className=" d-flex align-items-center gap-1 section__description">
                     <i
-                      class="ri-roadster-line"
+                      className="ri-roadster-line"
                       style={{ color: "#f9a826" }}
                     ></i>{" "}
                     {from.vehicle.model}
@@ -70,7 +74,7 @@ const CarDetails = (props) => {
 
                   <span className=" d-flex align-items-center gap-1 section__description">
                     <i
-                      class="ri-settings-2-line"
+                      className="ri-settings-2-line"
                       style={{ color: "#f9a826" }}
                     ></i>{" "}
                     {from.vehicle.exchange}
@@ -78,7 +82,7 @@ const CarDetails = (props) => {
 
                   <span className=" d-flex align-items-center gap-1 section__description">
                     <i
-                      class="ri-timer-flash-line"
+                      className="ri-timer-flash-line"
                       style={{ color: "#f9a826" }}
                     ></i>{" "}
                     {from.vehicle.mileage}
@@ -96,7 +100,7 @@ const CarDetails = (props) => {
 
                   <span className=" d-flex align-items-center gap-1 section__description">
                     <i
-                      class="ri-wheelchair-line"
+                      className="ri-wheelchair-line"
                       style={{ color: "#f9a826" }}
                     ></i>{" "}
                     {from.vehicle.doors}
@@ -104,13 +108,47 @@ const CarDetails = (props) => {
 
                   <span className=" d-flex align-items-center gap-1 section__description">
                     <i
-                      class="ri-building-2-line"
+                      className="ri-building-2-line"
                       style={{ color: "#f9a826" }}
                     ></i>{" "}
                     {from.vehicle.brand}
                   </span>
                 </div>
               </div>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="12">
+              <h6 className="section__title">Adicionais</h6>
+              <div
+                className=" d-flex align-items-center mt-3"
+                style={{ columnGap: "1rem" }}
+              >
+                {Object.entries(from.vehicle.additionals).map((adicional) => (
+                  adicional[1] ?
+                    <span className=" d-flex align-items-center gap-1 section__description">
+                      <i
+                        className="ri-arrow-up-line"
+                        style={{ color: "#f9a826" }}
+                      ></i>{" "}
+                      {nomeAdicionais[adicional[0]]}
+                    </span>
+                    : <></>
+                ))}
+              </div>
+            </Col>
+          </Row>
+
+          <Row>
+            <h6 className="section__title">Imagens</h6>
+            <Col lg="12" className="img-display">
+              {from.photos.map((foto, index) => (
+                <button onClick={() => {setFotoAtual(index)}}>
+                  <img src={foto.url} alt="" className="img" />
+                </button>
+              ))
+              }
             </Col>
           </Row>
         </Container>
