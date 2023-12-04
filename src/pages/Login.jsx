@@ -45,7 +45,7 @@ const Login = () => {
                             throw new Error("Erro no login");
                         }
 
-                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('token', token);
                         localStorage.setItem('company-token', response.data[0].user.token);
 
                         window.location.replace(window.location.href.split("3000/")[0] + "3000/home");
